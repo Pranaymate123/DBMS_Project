@@ -32,8 +32,8 @@
 	<%! Mentor ment=null;%>
 	<% 
 		if(!session.isNew()){
-			
-			List<Mentor> list = (List<Mentor>) session.getAttribute("ment");
+			List<Mentor> list=new ArrayList<Mentor>();
+			 list = (List<Mentor>) session.getAttribute("ment");
 			 ment = list.get(0);
 		}
 	%>

@@ -403,6 +403,37 @@ public class RegisterDaoImpl implements RegisterDao {
 		}
 		return b;
 	}
+
+	@Override
+	public List<Register> searchStudent(int id,String mentor) {
+		List<Register> list = new ArrayList<>();
+		DatabaseCon db = new DatabaseCon();
+		Connection con = db.myConnection();
+		System.out.println(id+mentor);
+		Register reg=null;
+		try {
+			PreparedStatement pstate = con.prepareStatement("select * from menteeView where roll=? and mentor=?");
+			pstate.setInt(1,id);
+			pstate.setString(2, mentor);
+			ResultSet res = pstate.executeQuery();
+			if(res.next()) {
+				 reg= new Register(res.getString(1), res.getInt(2), res.getString(3), res.getString(4),
+						res.getString(5), res.getString(6), res.getString(7));
+				 list.add(reg);
+				System.out.println("Hello Bhaiyya");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+	}
 	
 	
 	

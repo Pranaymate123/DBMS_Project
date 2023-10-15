@@ -10,6 +10,11 @@ public class Register {
 	private String username;
 	private String password;
 	private String mentor;
+	
+	public Register()
+	{
+		super();
+	}
 
 	public Register(String name, int roll, String phone, String year, String gender, String email, String username,
 			String password, String mentor) {

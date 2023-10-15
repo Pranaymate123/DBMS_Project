@@ -36,4 +36,7 @@ public interface RegisterDao {
 	int updateStudent(Login log);
 	
 	int updateMentor(Login log);
+	
+	public List<Register> searchStudent(int id,String mentor);
+	
 }

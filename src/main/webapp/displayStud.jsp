@@ -5,7 +5,7 @@
 <%@page import="maven.dao.RegisterDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %> 
 <!DOCTYPE html>
 <html>
@@ -29,6 +29,62 @@
 			border-radius:20px;
 			background: #dcdde1;
 		}
+		@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+
+
+       body{
+        background-color:#eee;
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+       }
+
+       
+
+       .search{
+       position: relative;
+       box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+         
+       }
+
+       .search input{
+
+        height: 50px;
+        text-indent: 25px;
+        border: 2px solid #d6d4d4;
+        
+
+
+       }
+
+
+       .search input:focus{
+
+        box-shadow: none;
+        border: 2px solid blue;
+
+
+       }
+
+       .search .fa-search{
+
+        position: absolute;
+        top: 20px;
+        left: 16px;
+
+       }
+
+       .search button{
+
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        height: 40px;
+        width: 110px;
+        background: #C04848; 
+			background: -webkit-linear-gradient(to right, #480048, #C04848); 
+			background: linear-gradient(to right, #480048, #C04848);
+
+       }
 	
 	</style>
 </head>
@@ -40,6 +96,30 @@
 	<div class="card-body">
 	<p class="text-center fs-1 p-3" style="color:purple;">Student Details</p>
 	
+	<form action="SearchServlet">
+	<div class="container mb-2">
+        <div class="row height d-flex justify-content-center align-items-center">
+            <div class="col-md-6">
+                <div class="search">
+                    <i class="fa fa-search"></i>
+                    
+                    <input type="number"  name="roll" class="form-control" placeholder="Enter the Roll No to Search Student">
+                    <button class="btn border-none text-light" >Search</button>
+                </div>
+            </div>
+            
+            <c:if test="${not empty mssg}">
+							<p class="text-center text-danger">${mssg}<p>
+							<c:remove var="mssg"/>
+						</c:if>	
+						<c:if test="${empty mssg}">
+							<p class="text-center text-danger">${mssg}<p>
+							<c:remove var="mssg"/>
+						</c:if>
+
+        </div>
+    </div>
+    
 	<table class="table table-striped table-bordered border-success ">
 	  <thead>
 	    <tr style="color: purple !important;">
@@ -59,26 +139,33 @@
 	  	if(!session.isNew())
 	  	{
 		  	RegisterDao dao = new RegisterDaoImpl();
-		  	 List<Register> list= (List<Register>) session.getAttribute("data");
+		  	List<Register> list= (List<Register>) session.getAttribute("data");
 		  	 for(Register s: list){
 	  %>
 	  	  <tr>
-	      <th style="color:cyan !important;" scope="row"><%= s.getRoll() %></th>
+	      <th style="color:purple !important;" scope="row"><%= s.getRoll() %></th>
 	      <td ><%= s.getName() %></td>
 	      <td><%= s.getPhone() %></td>
 	      <td><%= s.getGender() %> </td>
 	      <td><%= s.getYear() %> </td>
 	      <td><%= s.getEmail()%> </td>
 	      <td><%= s.getMentor()%> </td>
+	   
 	        <td>
 		      		<a href="delete?roll=<%=s.getRoll()%>" class="btn btn-sm btn-danger">Delete</a>
 		      	</td>
 	    </tr>
+	    <input name="mentor" type="text" value="<%=s.getMentor()%>" style="display:none;">
 	  <%}
+		  	 
 	  	}
 	  %>
+	  
+
 	  </tbody>
 	</table>
+	</form>
+		 
 	</div>
 	</div>
 	</div>

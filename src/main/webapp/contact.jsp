@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <link href="navcss.css" rel="stylesheets">
 
-<title>Insert title here</title>
+<title>Contact</title>
 <style>
 <%@ include file="register.css"%>
         body {
