@@ -3,6 +3,8 @@
 <%@page import="maven.model.Mentor"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,6 +63,16 @@
                 <input type="hidden" name="name" value="<%= ment.getName() %>" class="text-light mb-5 text-center fs-3" disabled="disabled" style="color: purple !important;border:none;outline:none; background: transparent;">
                     <div class="card-body p-4">
                         <h6 class="fs-2 text-dark">Information</h6>
+                        
+                        <c:if test="${not empty mssg}">
+							<p class="text-center text-danger">${mssg}<p>
+							<c:remove var="mssg"/>
+						</c:if>	
+						<c:if test="${empty mssg}">
+							<p class="text-center text-danger">${mssg}<p>
+							<c:remove var="mssg"/>
+						</c:if>
+                        
                         <hr class="mt-0 mb-4">
                         <div class="row pt-1">
                             <div class="col-6 mb-3">

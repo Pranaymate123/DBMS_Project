@@ -1,6 +1,7 @@
 package maven.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -47,12 +48,29 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 		if (type.equals("Mentor")) {
 			List<Mentor> mlist = dao.validateMentor(log);
-			session.setAttribute("ment", mlist);
-			response.sendRedirect("profileMentor.jsp");
+			if(!mlist.isEmpty())
+			{
+				session.setAttribute("ment", mlist);
+				response.sendRedirect("profileMentor.jsp");
+			}
+			else
+			{
+				session.setAttribute("loginerror","Login Failed ! Invalid Credentials ...");
+				response.sendRedirect("login.jsp");
+				
+			}
 		} else if (type.equals("Mentee")) {
 			List<Register> list = dao.validateMentee(log);
-			session.setAttribute("data", list);
-			response.sendRedirect("profile.jsp");
+			if(!list.isEmpty())
+			{
+				session.setAttribute("data", list);
+				response.sendRedirect("profile.jsp");
+			}
+			else
+			{
+				session.setAttribute("loginerror","Login Failed ! Invalid Credentials ...");
+				response.sendRedirect("login.jsp");
+			}
 		}
 
 	} 

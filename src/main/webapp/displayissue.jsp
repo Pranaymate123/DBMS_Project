@@ -48,7 +48,7 @@
 	      <th style="color: purple !important;" scope="col">Full Name</th>
 	      <th style="color: purple !important;" scope="col">Mentor</th>
 	      <th style="color: purple !important;" scope="col">Issue</th>
-	      
+	      <th style="color: purple !important;" scope="col">Action</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -65,7 +65,9 @@
 	      <td ><%=cm.getName()%></td>
 	      <td><%=cm.getMentor() %></td>
 	      <td><%= cm.getIssue() %> </td>
-	      
+	      <td>
+		      	<a href="deleteissue?roll=<%=cm.getRoll()%>" class="btn btn-sm btn-danger">Delete</a>
+		   </td>
 	    </tr>
 	  <%}
 	  	}

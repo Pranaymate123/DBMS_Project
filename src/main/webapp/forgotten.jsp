@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,10 +45,13 @@
                                     <p>Fill the form to reset your password.</p>
 
                                 </div>
-
+									<c:if test="${not empty updatePasswordError }">
+                                	<p class="text-center text-danger">${updatePasswordError}</p>
+                                	<c:remove var="updatePasswordError"/>
+                                </c:if>
                                 <!-- Form -->
 
-                                <form>
+                                <form action="ForgotPasswordServlet">
 
                                     <!-- Email -->
 
@@ -67,8 +73,8 @@
 
                                     <div class="form-check form-check-inline" style="cursor: pointer">
 
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio1" value="option1" />
+                                        <input class="form-check-input" type="radio" name="type"
+                                            id="inlineRadio1" value="Mentor" />
 
                                         <label class="form-check-label" for="inlineRadio1"
                                             required="true">Mentor</label>
@@ -77,8 +83,8 @@
 
                                     <div class="form-check form-check-inline" style="cursor: pointer">
 
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio2" value="option2" checked />
+                                        <input class="form-check-input" type="radio" name="type"
+                                            id="inlineRadio2" value="Mentee" checked />
 
                                         <label class="form-check-label" for="inlineRadio2"
                                             required="true">Mentee</label>

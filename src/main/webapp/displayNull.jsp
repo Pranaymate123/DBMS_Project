@@ -47,6 +47,15 @@
 					<p class="text-center text-danger">${mssg}<p>
 					<c:remove var="mssg"/>
 				</c:if>	
+				
+	<c:if test="${not empty error}">
+					<p class="text-center text-danger">${error}<p>
+					<c:remove var="error"/>
+				</c:if>	
+				<c:if test="${empty error}">
+					<p class="text-center text-danger">${error}<p>
+					<c:remove var="error"/>
+				</c:if>	
 	<table class="table table-striped table-bordered border-success ">
 	  <thead>
 	    <tr style="color: purple !important;">

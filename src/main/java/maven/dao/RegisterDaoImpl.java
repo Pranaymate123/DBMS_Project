@@ -79,7 +79,7 @@ public class RegisterDaoImpl implements RegisterDao {
 
 	@Override
 	public List<Mentor> validateMentor(Login log) {
-		List<Mentor> mlist = null;
+		List<Mentor> mlist = new ArrayList<Mentor>();
 		DatabaseCon db = new DatabaseCon();
 		Connection con = db.myConnection();
 
@@ -90,7 +90,7 @@ public class RegisterDaoImpl implements RegisterDao {
 
 			ResultSet res = pstate.executeQuery();
 			if (res.next()) {
-				mlist = new ArrayList<>();
+				
 				Mentor ment = new Mentor(res.getInt(2), res.getString(1), res.getString(3), res.getString(4),
 						res.getString(5), res.getString(6), res.getString(7));
 				mlist.add(ment);
@@ -112,7 +112,7 @@ public class RegisterDaoImpl implements RegisterDao {
 
 	@Override
 	public List<Register> validateMentee(Login log) {
-		List<Register> list = null;
+		List<Register> list =  new ArrayList<Register>();;
 		DatabaseCon db = new DatabaseCon();
 		Connection con = db.myConnection();
 
@@ -123,7 +123,7 @@ public class RegisterDaoImpl implements RegisterDao {
 
 			ResultSet res = pstate.executeQuery();
 			if (res.next()) {
-				list = new ArrayList<>();
+				
 				Register reg = new Register(res.getString(1), res.getInt(2), res.getString(3), res.getString(4),
 						res.getString(5), res.getString(6), res.getString(7), res.getString(8), res.getString(9));
 				list.add(reg);
@@ -137,7 +137,6 @@ public class RegisterDaoImpl implements RegisterDao {
 				e.printStackTrace();
 			}
 		}
-
 		return list;
 	}
 
@@ -336,5 +335,75 @@ public class RegisterDaoImpl implements RegisterDao {
 		}
 		return b;
 	}
+
+	@Override
+	public int updateStudent(Login log) {
+		int i=0;
+		DatabaseCon db = new DatabaseCon();
+		Connection con = db.myConnection();
+
+		try {
+			PreparedStatement pstate = con.prepareStatement("update mentee set password=? where username=?");
+			pstate.setString(1, log.getPassword());
+			pstate.setString(2, log.getUsername());
+			i=pstate.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return i;
+	}
+
+	@Override
+	public int updateMentor(Login log) {
+		int i=0;
+		DatabaseCon db = new DatabaseCon();
+		Connection con = db.myConnection();
+
+		try {
+			PreparedStatement pstate = con.prepareStatement("update mentor set password=? where username=?");
+			pstate.setString(2, log.getUsername());
+			pstate.setString(1, log.getPassword());
+			i=pstate.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return i;                                                                                                   
+	}
+
+	@Override
+	public boolean deleteIssue(int id) {
+		DatabaseCon db = new DatabaseCon();
+		Connection con = db.myConnection();
+		boolean b=false;
+		try {
+			String str="delete from Complaint where roll=?";
+			PreparedStatement pState=con.prepareStatement(str);
+			pState.setInt(1, id);
+			int i=pState.executeUpdate();
+			if(i>0)
+			{
+				b=true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return b;
+	}
+	
+	
 	
 }

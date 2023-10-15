@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 
 <!DOCTYPE html>
 
@@ -120,12 +122,20 @@ pageEncoding="UTF-8"%>
                                 
 
                                 <form action="loginServlet">
+                                <c:if test="${not empty updatemsgsuccess }">
+                                	<p class="text-center text-success">${updatemsgsuccess}</p>
+                                	<c:remove var="updatemsgsuccess"/>
+                               		 </c:if>
 
                                     <p style="text-align: center;font-size: x-large;font-weight: 700;">
 
                                         Please login to your account
 
                                     </p>
+                                    <c:if test="${not empty loginerror }">
+                                	<p class="text-center text-danger">${loginerror}</p>
+                                	<c:remove var="loginerror"/>
+                               		 </c:if>
 
                                     <div class="form-outline mb-4">
 
@@ -164,7 +174,7 @@ pageEncoding="UTF-8"%>
 
                                     <div class="text-center pt-4 mb-5">
 
-                                        <input class="gradient-custom-2 py-2" type="submit" value="login"
+                                        <input class="gradient-custom-2 py-2 text-light" type="submit" value="login"
                                             style="padding: 3px 15px;border-radius: 5px;border: 1px solid white;" />
 
                                         <a class="text-muted link-secondary p-3" href="forgotten.jsp"

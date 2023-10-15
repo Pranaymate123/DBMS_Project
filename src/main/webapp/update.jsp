@@ -3,7 +3,8 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="maven.db.DatabaseCon"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 
 <html>
@@ -63,10 +64,10 @@
 
                                 <h3 class="register-heading">Update Profile As Mentee</h3>
                                 <div class="row register-form">
-                                    <h5 class="text-center ">
-                                        <% if(!session.isNew()) { String msg=(String)session.getAttribute("updatemsg");
-                                            if(msg!=null) { out.println(msg); } session.invalidate(); } %>
-                                    </h5>
+                                       <c:if test="${not empty updatemsgerror }">
+                                	<p class="text-center text-danger">${updatemsgerror}</p>
+                                	<c:remove var="updatemsgerror"/>
+                               		 </c:if>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="name"

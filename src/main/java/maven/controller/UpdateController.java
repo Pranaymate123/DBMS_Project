@@ -36,7 +36,6 @@ public class UpdateController extends HttpServlet {
 		super();
 
 		// TODO Auto-generated constructor stub
-
 	}
 
 	/**
@@ -80,7 +79,7 @@ public class UpdateController extends HttpServlet {
 
 		{
 
-			session.setAttribute("updatemsg", "Your Profile Updated SuccessFully ....");
+			session.setAttribute("updatemsgsuccess", "Your Profile Updated SuccessFully ....");
 
 			response.sendRedirect("login.jsp");
 
@@ -90,7 +89,7 @@ public class UpdateController extends HttpServlet {
 
 		{
 
-			session.setAttribute("updatemsg", "Please Check Your Roll Number and Password");
+			session.setAttribute("updatemsgerror", "Please Check Your Roll Number and Password");
 
 			response.sendRedirect("update.jsp");
 

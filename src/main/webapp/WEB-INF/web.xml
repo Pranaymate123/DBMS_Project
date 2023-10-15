@@ -64,6 +64,24 @@
   	<description></description>
   	<servlet-class>maven.controller.DeleteStud</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ForgotController</servlet-name>
+  	<display-name>ForgotController</display-name>
+  	<description></description>
+  	<servlet-class>maven.controller.ForgotController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ForgotPasswordController</servlet-name>
+  	<display-name>ForgotPasswordController</display-name>
+  	<description></description>
+  	<servlet-class>maven.controller.ForgotPasswordController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DeleteIssueController</servlet-name>
+  	<display-name>DeleteIssueController</display-name>
+  	<description></description>
+  	<servlet-class>maven.controller.DeleteIssueController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterController</servlet-name>
   	<url-pattern>/RegisterController</url-pattern>
@@ -103,5 +121,17 @@
   <servlet-mapping>
   	<servlet-name>DeleteStud</servlet-name>
   	<url-pattern>/DeleteStud</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ForgotController</servlet-name>
+  	<url-pattern>/ForgotController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ForgotPasswordController</servlet-name>
+  	<url-pattern>/ForgotPasswordController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteIssueController</servlet-name>
+  	<url-pattern>/DeleteIssueController</url-pattern>
   </servlet-mapping>
 </web-app>
