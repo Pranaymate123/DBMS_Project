@@ -58,6 +58,12 @@
   	<description></description>
   	<servlet-class>maven.controller.DisplayIssueController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>DeleteStud</servlet-name>
+  	<display-name>DeleteStud</display-name>
+  	<description></description>
+  	<servlet-class>maven.controller.DeleteStud</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterController</servlet-name>
   	<url-pattern>/RegisterController</url-pattern>
@@ -93,5 +99,9 @@
   <servlet-mapping>
   	<servlet-name>DisplayIssueController</servlet-name>
   	<url-pattern>/DisplayIssueController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteStud</servlet-name>
+  	<url-pattern>/DeleteStud</url-pattern>
   </servlet-mapping>
 </web-app>

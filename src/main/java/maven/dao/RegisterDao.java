@@ -28,5 +28,6 @@ public interface RegisterDao {
 	public int addIssue(ContactModel cm);
 	
 	public List<ContactModel> displayIssues(String name);
+	public boolean deleteStudent(int id);
 
 }

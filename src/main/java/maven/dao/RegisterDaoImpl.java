@@ -316,5 +316,25 @@ public class RegisterDaoImpl implements RegisterDao {
 		}
 		return list;
 	}
+	@Override
+	public boolean deleteStudent(int id) {
+		DatabaseCon db = new DatabaseCon();
+		Connection con = db.myConnection();
+		boolean b=false;
+		try {
+			String str="delete from MenteeView where roll=?";
+			PreparedStatement pState=con.prepareStatement(str);
+			pState.setInt(1, id);
+			int i=pState.executeUpdate();
+			if(i>0)
+			{
+				b=true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return b;
+	}
 	
 }

@@ -5,7 +5,7 @@
 <%@page import="maven.dao.RegisterDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %> 
 <!DOCTYPE html>
 <html>
@@ -39,7 +39,14 @@
 	<div class="card">
 	<div class="card-body">
 	<p class="text-center fs-1 p-3" style="color:purple;">Student Details</p>
-	
+	<c:if test="${not empty mssg}">
+					<p class="text-center text-danger">${mssg}<p>
+					<c:remove var="mssg"/>
+				</c:if>	
+				<c:if test="${empty mssg}">
+					<p class="text-center text-danger">${mssg}<p>
+					<c:remove var="mssg"/>
+				</c:if>	
 	<table class="table table-striped table-bordered border-success ">
 	  <thead>
 	    <tr style="color: purple !important;">
@@ -50,33 +57,20 @@
 	      <th style="color: purple !important;" scope="col">Year</th>
 	      <th style="color: purple !important;" scope="col">Email</th>
 	      <th style="color: purple !important;" scope="col">Mentor</th>
-	       <th style="color: purple !important;" scope="col">Action</th>
+	      
 	    </tr>
 	  </thead>
 	  <tbody>
-	  
-	  <%
-	  	if(!session.isNew())
-	  	{
-		  	RegisterDao dao = new RegisterDaoImpl();
-		  	 List<Register> list= (List<Register>) session.getAttribute("data");
-		  	 for(Register s: list){
-	  %>
-	  	  <tr>
-	      <th style="color:cyan !important;" scope="row"><%= s.getRoll() %></th>
-	      <td ><%= s.getName() %></td>
-	      <td><%= s.getPhone() %></td>
-	      <td><%= s.getGender() %> </td>
-	      <td><%= s.getYear() %> </td>
-	      <td><%= s.getEmail()%> </td>
-	      <td><%= s.getMentor()%> </td>
-	        <td>
-		      		<a href="delete?roll=<%=s.getRoll()%>" class="btn btn-sm btn-danger">Delete</a>
-		      	</td>
-	    </tr>
-	  <%}
-	  	}
-	  %>
+			  	  <tr>
+			      <td></td>
+			      <td ></td>
+			      <td></td>
+			      <td> </td>
+			      <td></td>
+			      <td></td>
+			      <td></td>
+		
+			    </tr>
 	  </tbody>
 	</table>
 	</div>

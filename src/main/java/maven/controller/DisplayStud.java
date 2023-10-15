@@ -38,13 +38,16 @@ public class DisplayStud extends HttpServlet {
 			throws ServletException, IOException {
 		String name = request.getParameter("name");
 		RegisterDao dao = new RegisterDaoImpl();
+		System.out.println(name);
 		List<Register> list = dao.displayAllStud(name);
 		HttpSession session = request.getSession();
 		if (!list.isEmpty()) {
 			session.setAttribute("data", list);
 			response.sendRedirect("displayStud.jsp");
 		} else {
-			response.sendRedirect("index.jsp");
+			String mssg="Sorry,You don't have Any Student Records..";
+			session.setAttribute("mssg",mssg);
+			response.sendRedirect("displayNull.jsp");
 		}
 	}
 
