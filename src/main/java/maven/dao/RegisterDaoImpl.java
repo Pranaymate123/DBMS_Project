@@ -57,11 +57,11 @@ public class RegisterDaoImpl implements RegisterDao {
 			PreparedStatement pstate = con.prepareStatement("insert into mentor values(?,?,?,?,?,?,?)");
 			pstate.setString(1, ment.getName());
 			pstate.setInt(2, ment.getId());
-			pstate.setString(7, ment.getPhone());
-			pstate.setString(3, ment.getGender());
-			pstate.setString(4, ment.getUsername());
-			pstate.setString(5, ment.getPassword());
-			pstate.setString(6, ment.getEmail());
+			pstate.setString(3, ment.getPhone());
+			pstate.setString(4, ment.getGender());
+			pstate.setString(5, ment.getUsername());
+			pstate.setString(6, ment.getPassword());
+			pstate.setString(7, ment.getEmail());
 			i = pstate.executeUpdate();
 
 		} catch (SQLException e) {
